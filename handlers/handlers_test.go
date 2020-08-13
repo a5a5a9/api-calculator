@@ -4,19 +4,17 @@ import (
 	"net/http"
 	"net/http/httptest"
 	"testing"
-
-	"github.com/a5a5a9/api-calculator/handlers"
 	// "github.com/stretchr/testify/assert"
 )
 
 func TestAddHandlerr(t *testing.T) {
-	var r *http.Request
+
 	req, err := http.NewRequest("GET", "/add/8,5", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.CalcHandler)
+	handler := http.HandlerFunc(AddHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
@@ -30,13 +28,13 @@ func TestAddHandlerr(t *testing.T) {
 }
 
 func TestSubstractHandlerr(t *testing.T) {
-	var r *http.Request
+
 	req, err := http.NewRequest("GET", "/substract/-8,5", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.CalcHandler)
+	handler := http.HandlerFunc(SubstractHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
@@ -50,13 +48,13 @@ func TestSubstractHandlerr(t *testing.T) {
 }
 
 func TestDivisionHandlerr(t *testing.T) {
-	var r *http.Request
-	req, err := http.NewRequest("GET", "/div/8,4", nil)
+
+	req, err := http.NewRequest("GET", "/division/8,4", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.CalcHandler)
+	handler := http.HandlerFunc(DivisionHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
@@ -70,19 +68,19 @@ func TestDivisionHandlerr(t *testing.T) {
 }
 
 func TestRandomHandlerr(t *testing.T) {
-	var r *http.Request
+
 	req, err := http.NewRequest("GET", "/random", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.CalcHandler)
+	handler := http.HandlerFunc(RandomHandler)
 	handler.ServeHTTP(rr, req)
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
 		expected := `10`
-		leng := len(rr.Body)
+
 		if rr.Body.String() != expected {
 			t.Errorf("handler returned unexpected body: got %v want %v",
 				rr.Body.String(), expected)
@@ -100,7 +98,7 @@ func TestLivenessCheckHandler(t *testing.T) {
 
 	// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.LivenessCheckHandler)
+	handler := http.HandlerFunc(LivenessCheckHandler)
 
 	// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
 	// directly and pass in our Request and ResponseRecorder.
@@ -130,7 +128,7 @@ func TestReadinessCheckHandler(t *testing.T) {
 
 	// We create a ResponseRecorder (which satisfies http.ResponseWriter) to record the response.
 	rr := httptest.NewRecorder()
-	handler := http.HandlerFunc(handlers.ReadinessCheckHandler)
+	handler := http.HandlerFunc(ReadinessCheckHandler)
 
 	// Our handlers satisfy http.Handler, so we can call their ServeHTTP method
 	// directly and pass in our Request and ResponseRecorder.
