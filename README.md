@@ -4,19 +4,19 @@ an api that performs the following operations:
 
 ### add
 ```http
-http://localhost:8080/{value1},{value2}
+http://localhost:8080/value1,value2
 ```
 ### substract
 ```http
-http://localhost:8080/{value1},{value2}
+http://localhost:8080/value1,value2
 ```
 ### divide
 ```http
-http://localhost:8080/{value1},{value2}
+http://localhost:8080/value1,value2
 ```
 ### random
 ```http
-http://localhost:8080/random/{value}
+http://localhost:8080/random/value
 ```
 ## Other endpoints
 
