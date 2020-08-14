@@ -7,9 +7,11 @@ import (
 	// "github.com/stretchr/testify/assert"
 )
 
+var x, y float64 = 3, 4.5
+
 func TestAddHandlerr(t *testing.T) {
 
-	req, err := http.NewRequest("GET", "/add/8,5", nil)
+	req, err := http.NewRequest("GET", "/add/4,9", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -29,7 +31,7 @@ func TestAddHandlerr(t *testing.T) {
 
 func TestSubstractHandlerr(t *testing.T) {
 
-	req, err := http.NewRequest("GET", "/substract/-8,5", nil)
+	req, err := http.NewRequest("GET", "/substract/4.1,2.4", nil)
 	if err != nil {
 		t.Fatal(err)
 	}
@@ -39,7 +41,7 @@ func TestSubstractHandlerr(t *testing.T) {
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
-		expected := `-13`
+		expected := `1.70`
 		if rr.Body.String() != expected {
 			t.Errorf("handler returned unexpected body: got %v want %v",
 				rr.Body.String(), expected)
@@ -59,7 +61,7 @@ func TestDivisionHandlerr(t *testing.T) {
 	if status := rr.Code; status != http.StatusOK {
 		t.Errorf("handler returned wrong status code: got %v want %v",
 			status, http.StatusOK)
-		expected := `2.0`
+		expected := `2`
 		if rr.Body.String() != expected {
 			t.Errorf("handler returned unexpected body: got %v want %v",
 				rr.Body.String(), expected)

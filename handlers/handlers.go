@@ -55,7 +55,7 @@ func SubstractHandler(response http.ResponseWriter, request *http.Request) {
 	if secondErr != nil {
 		http.Error(response, secondErr.Error(), http.StatusBadRequest)
 	}
-	subs := firstNumber - secondNumber
+	subs := fmt.Sprintf("%.2f", (firstNumber - secondNumber))
 	fmt.Fprint(response, subs)
 
 }

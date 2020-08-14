@@ -1,0 +1,17 @@
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+    name: "api-calculator"
+    annotations:
+      kubernetes.io/ingress.class: nginx
+        
+    labels:
+      app: api-calculator
+spec:
+  rules:
+  - http:
+      paths:
+        - path: /*
+          backend:
+            serviceName: "api-calculator"
+            servicePort: 80
