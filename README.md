@@ -14,7 +14,7 @@ http://localhost:8080/value1,value2
 ```http
 http://localhost:8080/value1,value2
 ```
-### random
+### random (value is optional)
 ```http
 http://localhost:8080/random/value
 ```
